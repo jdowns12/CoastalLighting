@@ -1,11 +1,19 @@
 {
   "hero": {
-    "title": "Light Up Your\nMoments",
+    "title": "Light Up Your Moments WITH COASTAL",
     "subtitle": "Professional event lighting for weddings, celebrations, and unforgettable nights",
     "backgroundImage": "/images/hero-bokeh.jpg",
     "cta": [
-      { "text": "Get a Quote", "href": "#contact", "primary": true },
-      { "text": "View Gallery", "href": "#gallery", "primary": false }
+      {
+        "text": "Get a Quote",
+        "href": "#contact",
+        "primary": true
+      },
+      {
+        "text": "View Gallery",
+        "href": "#gallery",
+        "primary": false
+      }
     ]
   },
   "services": {
@@ -85,6 +93,12 @@
   "contact": {
     "title": "Ready to Light Up Your Event?",
     "subtitle": "Tell us about your vision and we'll create something beautiful together.",
-    "fields": ["fullName", "phone", "email", "eventDate", "message"]
+    "fields": [
+      "fullName",
+      "phone",
+      "email",
+      "eventDate",
+      "message"
+    ]
   }
 }
