@@ -1,0 +1,71 @@
+{
+  "hero": {
+    "title": "Rent Party Essentials Now",
+    "subtitle": "Make your event a success with our wide selection of tents, tables, and chairs for rent.",
+    "backgroundImage": "/images/hero-bokeh.jpg",
+    "cta": [
+      { "text": "Contact us", "href": "#contact", "primary": true },
+      { "text": "Features", "href": "#features", "primary": false }
+    ]
+  },
+  "features": {
+    "sectionTitle": "Why Choose Us?",
+    "sectionSubtitle": "Convenient and affordable party rentals",
+    "items": [
+      {
+        "number": 1,
+        "title": "Wide Selection",
+        "description": "Choose from a variety of tents, tables, and chairs to fit your event needs."
+      },
+      {
+        "number": 2,
+        "title": "Convenient Delivery",
+        "description": "We offer delivery and setup services to make your event planning hassle-free."
+      },
+      {
+        "number": 3,
+        "title": "Affordable Prices",
+        "description": "Renting party essentials shouldn't break the bank. Our prices are budget-friendly."
+      },
+      {
+        "number": 4,
+        "title": "Excellent Customer Service",
+        "description": "Our team is dedicated to providing exceptional service to ensure your event is a success."
+      }
+    ]
+  },
+  "about": [
+    {
+      "title": "Hassle Free Setup and Delivery",
+      "description": "We will deliver and set your items up so you can relax and focus on other matters.",
+      "image": "/images/string-lights.jpg",
+      "imagePosition": "right"
+    },
+    {
+      "title": "Flexible Rental Periods",
+      "description": "Whether you need our rentals for one day or a week, we offer flexible rental periods to fit your event schedule.",
+      "image": "/images/outdoor-event.jpg",
+      "imagePosition": "left"
+    }
+  ],
+  "testimonials": {
+    "sectionTitle": "Testimonials",
+    "sectionSubtitle": "What our customers say",
+    "items": [
+      {
+        "quote": "EZ Rental SSI has been my go-to for all my event rental needs. Their service is top-notch and their prices are unbeatable.",
+        "name": "Jane Smith",
+        "role": "Event Planner"
+      },
+      {
+        "quote": "Thanks to EZ Rental SSI, my daughter's birthday party was a success. The tent and chairs were in great condition and the delivery was on time.",
+        "name": "Mike Johnson",
+        "role": "Party Host"
+      }
+    ]
+  },
+  "contact": {
+    "title": "Contact us",
+    "fields": ["fullName", "phone", "email", "message"]
+  }
+}
