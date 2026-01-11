@@ -26,7 +26,7 @@
 	<header class:scrolled>
 		<nav>
 			<a href="/" class="logo">
-				<span class="logo-icon">✦</span>
+				<span class="logo-icon">⚡</span>
 				<span class="logo-text">{site.name}</span>
 			</a>
 			<button class="mobile-toggle" on:click={() => mobileMenuOpen = !mobileMenuOpen} aria-label="Menu">
@@ -49,7 +49,7 @@
 		<div class="footer-glow"></div>
 		<div class="footer-content">
 			<div class="footer-brand">
-				<span class="logo-icon large">✦</span>
+				<span class="logo-icon large">⚡</span>
 				<h2>{site.name}</h2>
 				<p class="location">{site.location}</p>
 			</div>
@@ -80,8 +80,8 @@
 	:global(body) {
 		font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 		line-height: 1.6;
-		color: #e8e4de;
-		background: #0a0a0a;
+		color: #e8e8e8;
+		background: #0a0f0d;
 		overflow-x: hidden;
 	}
 
@@ -110,7 +110,7 @@
 	}
 
 	header.scrolled {
-		background: rgba(10, 10, 10, 0.95);
+		background: rgba(10, 15, 13, 0.95);
 		backdrop-filter: blur(20px);
 		padding: 0.75rem 2rem;
 		box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
@@ -129,13 +129,13 @@
 		align-items: center;
 		gap: 0.75rem;
 		text-decoration: none;
-		color: #e8e4de;
+		color: #e8e8e8;
 	}
 
 	.logo-icon {
 		font-size: 1.5rem;
-		color: #d4a853;
-		text-shadow: 0 0 20px rgba(212, 168, 83, 0.5);
+		color: #22c55e;
+		text-shadow: 0 0 20px rgba(34, 197, 94, 0.5);
 		animation: pulse 3s ease-in-out infinite;
 	}
 
@@ -172,7 +172,7 @@
 	}
 
 	.nav-links a:hover {
-		color: #e8e4de;
+		color: #e8e8e8;
 	}
 
 	.nav-links a::after {
@@ -182,7 +182,7 @@
 		left: 0;
 		width: 0;
 		height: 1px;
-		background: linear-gradient(90deg, #d4a853, transparent);
+		background: linear-gradient(90deg, #22c55e, transparent);
 		transition: width 0.3s ease;
 	}
 
@@ -192,8 +192,8 @@
 
 	.nav-cta {
 		padding: 0.6rem 1.5rem !important;
-		background: linear-gradient(135deg, #d4a853 0%, #b8923f 100%);
-		color: #0a0a0a !important;
+		background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+		color: #fff !important;
 		border-radius: 4px;
 		font-weight: 500 !important;
 	}
@@ -204,7 +204,7 @@
 
 	.nav-cta:hover {
 		transform: translateY(-2px);
-		box-shadow: 0 8px 25px rgba(212, 168, 83, 0.3);
+		box-shadow: 0 8px 25px rgba(34, 197, 94, 0.3);
 	}
 
 	/* Mobile menu */
@@ -226,7 +226,7 @@
 		position: absolute;
 		width: 100%;
 		height: 2px;
-		background: #e8e4de;
+		background: #e8e8e8;
 		transition: all 0.3s ease;
 	}
 
@@ -262,7 +262,7 @@
 	/* Footer */
 	footer {
 		position: relative;
-		background: #050505;
+		background: #050807;
 		padding: 5rem 2rem 2rem;
 		text-align: center;
 		overflow: hidden;
@@ -275,7 +275,7 @@
 		transform: translateX(-50%);
 		width: 400px;
 		height: 200px;
-		background: radial-gradient(ellipse, rgba(212, 168, 83, 0.15) 0%, transparent 70%);
+		background: radial-gradient(ellipse, rgba(34, 197, 94, 0.15) 0%, transparent 70%);
 		pointer-events: none;
 	}
 
@@ -291,7 +291,7 @@
 
 	.footer-brand h2 {
 		font-size: 2rem;
-		color: #e8e4de;
+		color: #e8e8e8;
 		margin: 0.5rem 0;
 	}
 
@@ -316,13 +316,13 @@
 	}
 
 	.footer-contact a:hover {
-		color: #d4a853;
+		color: #22c55e;
 	}
 
 	.phone {
 		font-size: 1.2rem;
 		font-weight: 500;
-		color: #d4a853 !important;
+		color: #22c55e !important;
 	}
 
 	.footer-social {
@@ -345,8 +345,8 @@
 	}
 
 	.footer-social a:hover {
-		border-color: #d4a853;
-		color: #d4a853;
+		border-color: #22c55e;
+		color: #22c55e;
 		transform: translateY(-3px);
 	}
 
@@ -375,7 +375,7 @@
 			right: -100%;
 			width: 100%;
 			height: 100vh;
-			background: rgba(10, 10, 10, 0.98);
+			background: rgba(10, 15, 13, 0.98);
 			flex-direction: column;
 			justify-content: center;
 			gap: 2rem;
