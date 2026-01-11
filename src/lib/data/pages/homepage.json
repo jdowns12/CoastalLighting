@@ -1,17 +1,22 @@
 {
   "hero": {
-    "title": "Hunter I may have done something",
-    "subtitle": "Professional event lighting for weddings, celebrations, and unforgettable nights",
-    "backgroundImage": "/images/hero-bokeh.jpg",
+    "title": "TP we are in business potentially",
+    "subtitle": "Created website based on ideas and editing texts and about to edit the image below.",
+    "backgroundImage": "/images/string-lights.jpg",
     "cta": [
       {
-        "text": "Get a Quote",
+        "text": "Button for contact  (Jadon edit)",
         "href": "#contact",
         "primary": true
       },
       {
-        "text": "View Gallery",
+        "text": "See more pictures (JE)",
         "href": "#gallery",
+        "primary": false
+      },
+      {
+        "text": "added another button - needs auto dropdown for #whatever)",
+        "href": "#HMM",
         "primary": false
       }
     ]
