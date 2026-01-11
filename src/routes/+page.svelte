@@ -13,19 +13,19 @@
 	};
 
 	let particles = [];
-	let mousePos = { x: 0, y: 0 };
+	let activeGalleryIndex = null;
 
 	onMount(() => {
 		visible.hero = true;
 
 		// Create floating particles
-		for (let i = 0; i < 30; i++) {
+		for (let i = 0; i < 40; i++) {
 			particles.push({
 				x: Math.random() * 100,
 				y: Math.random() * 100,
-				size: Math.random() * 3 + 1,
-				speed: Math.random() * 20 + 10,
-				delay: Math.random() * 5
+				size: Math.random() * 4 + 1,
+				speed: Math.random() * 25 + 15,
+				delay: Math.random() * 8
 			});
 		}
 		particles = particles;
@@ -37,7 +37,7 @@
 					visible[id] = true;
 				}
 			});
-		}, { threshold: 0.15 });
+		}, { threshold: 0.1 });
 
 		document.querySelectorAll('section[id]').forEach(section => {
 			observer.observe(section);
@@ -64,7 +64,33 @@
 			formData = { fullName: '', phone: '', email: '', eventDate: '', message: '' };
 		}, 1500);
 	}
+
+	function openLightbox(index) {
+		activeGalleryIndex = index;
+		document.body.style.overflow = 'hidden';
+	}
+
+	function closeLightbox() {
+		activeGalleryIndex = null;
+		document.body.style.overflow = '';
+	}
+
+	function nextImage() {
+		activeGalleryIndex = (activeGalleryIndex + 1) % homepage.gallery.images.length;
+	}
+
+	function prevImage() {
+		activeGalleryIndex = (activeGalleryIndex - 1 + homepage.gallery.images.length) % homepage.gallery.images.length;
+	}
 </script>
+
+<svelte:window on:keydown={(e) => {
+	if (activeGalleryIndex !== null) {
+		if (e.key === 'Escape') closeLightbox();
+		if (e.key === 'ArrowRight') nextImage();
+		if (e.key === 'ArrowLeft') prevImage();
+	}
+}} />
 
 <!-- Hero Section -->
 <section id="hero" class="hero" class:visible={visible.hero}>
@@ -98,24 +124,39 @@
 	</div>
 </section>
 
-<!-- Services Section -->
+<!-- Services Section with Images -->
 <section id="services" class="services" class:visible={visible.services}>
 	<div class="section-glow"></div>
 	<div class="container">
-		<div class="section-header">
+		<div class="section-header center">
 			<span class="section-tag">{homepage.services.sectionSubtitle}</span>
 			<h2>{homepage.services.sectionTitle}</h2>
 		</div>
 		<div class="services-grid">
 			{#each homepage.services.items as service, i}
 				<div class="service-card" style="animation-delay: {i * 0.15}s">
-					<span class="service-icon">{service.icon}</span>
-					<h3>{service.title}</h3>
-					<p>{service.description}</p>
-					<div class="card-glow"></div>
+					<div class="service-image">
+						<img src={service.image} alt={service.title} loading="lazy" />
+						<div class="service-image-overlay"></div>
+					</div>
+					<div class="service-content">
+						<span class="service-icon">{service.icon}</span>
+						<h3>{service.title}</h3>
+						<p>{service.description}</p>
+					</div>
 				</div>
 			{/each}
 		</div>
+	</div>
+</section>
+
+<!-- Full-width Image Break -->
+<section class="image-break">
+	<div class="parallax-bg" style="background-image: url('/images/string-lights.jpg')"></div>
+	<div class="image-break-overlay"></div>
+	<div class="image-break-content">
+		<span class="accent-text">Creating Magic</span>
+		<h2>Every Light Tells a Story</h2>
 	</div>
 </section>
 
@@ -123,22 +164,26 @@
 <section id="features" class="features" class:visible={visible.features}>
 	<div class="container">
 		<div class="features-layout">
-			<div class="features-header">
+			<div class="features-image">
+				<img src="/images/outdoor-event.jpg" alt="Outdoor event lighting" loading="lazy" />
+				<div class="features-image-glow"></div>
+			</div>
+			<div class="features-content">
 				<span class="section-tag">{homepage.features.sectionSubtitle}</span>
 				<h2>{homepage.features.sectionTitle}</h2>
-			</div>
-			<div class="features-list">
-				{#each homepage.features.items as feature, i}
-					<div class="feature-item" style="animation-delay: {i * 0.2}s">
-						<div class="feature-marker">
-							<span class="marker-glow"></span>
+				<div class="features-list">
+					{#each homepage.features.items as feature, i}
+						<div class="feature-item" style="animation-delay: {i * 0.2}s">
+							<div class="feature-marker">
+								<span class="marker-glow"></span>
+							</div>
+							<div class="feature-text">
+								<h3>{feature.title}</h3>
+								<p>{feature.description}</p>
+							</div>
 						</div>
-						<div class="feature-text">
-							<h3>{feature.title}</h3>
-							<p>{feature.description}</p>
-						</div>
-					</div>
-				{/each}
+					{/each}
+				</div>
 			</div>
 		</div>
 	</div>
@@ -151,16 +196,31 @@
 			<span class="section-tag">{homepage.gallery.sectionSubtitle}</span>
 			<h2>{homepage.gallery.sectionTitle}</h2>
 		</div>
-		<div class="gallery-grid">
+		<div class="gallery-masonry">
 			{#each homepage.gallery.images as image, i}
-				<div class="gallery-item" style="animation-delay: {i * 0.2}s">
-					<img src={image} alt="Event lighting" loading="lazy" />
-					<div class="gallery-overlay"></div>
-				</div>
+				<button class="gallery-item" style="animation-delay: {i * 0.1}s" on:click={() => openLightbox(i)}>
+					<img src={image} alt="Event lighting {i + 1}" loading="lazy" />
+					<div class="gallery-overlay">
+						<span class="gallery-zoom">+</span>
+					</div>
+				</button>
 			{/each}
 		</div>
 	</div>
 </section>
+
+<!-- Lightbox -->
+{#if activeGalleryIndex !== null}
+	<div class="lightbox" on:click={closeLightbox}>
+		<button class="lightbox-close" on:click={closeLightbox}>&times;</button>
+		<button class="lightbox-prev" on:click|stopPropagation={prevImage}>&larr;</button>
+		<div class="lightbox-content" on:click|stopPropagation>
+			<img src={homepage.gallery.images[activeGalleryIndex]} alt="Gallery image" />
+		</div>
+		<button class="lightbox-next" on:click|stopPropagation={nextImage}>&rarr;</button>
+		<div class="lightbox-counter">{activeGalleryIndex + 1} / {homepage.gallery.images.length}</div>
+	</div>
+{/if}
 
 <!-- Testimonials Section -->
 <section id="testimonials" class="testimonials" class:visible={visible.testimonials}>
@@ -291,7 +351,7 @@
 		background-position: center;
 		transform: scale(1.1);
 		transition: transform 12s ease-out;
-		filter: brightness(0.4);
+		filter: brightness(0.5);
 	}
 
 	.hero.visible .hero-bg {
@@ -301,7 +361,7 @@
 	.hero-overlay {
 		position: absolute;
 		inset: 0;
-		background: linear-gradient(180deg, rgba(10,10,10,0.3) 0%, rgba(10,10,10,0.8) 100%);
+		background: linear-gradient(180deg, rgba(10,10,10,0.4) 0%, rgba(10,10,10,0.85) 100%);
 	}
 
 	.particles {
@@ -313,7 +373,7 @@
 
 	.particle {
 		position: absolute;
-		background: radial-gradient(circle, rgba(212, 168, 83, 0.8) 0%, transparent 70%);
+		background: radial-gradient(circle, rgba(212, 168, 83, 0.9) 0%, transparent 70%);
 		border-radius: 50%;
 		animation: float linear infinite;
 	}
@@ -474,23 +534,28 @@
 
 	.services-grid {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 		gap: 2rem;
 	}
 
 	.service-card {
 		position: relative;
-		padding: 2.5rem 2rem;
 		background: linear-gradient(145deg, rgba(30, 30, 30, 0.5), rgba(15, 15, 15, 0.5));
 		border: 1px solid rgba(255, 255, 255, 0.05);
-		border-radius: 12px;
+		border-radius: 16px;
 		overflow: hidden;
 		opacity: 0;
 		transform: translateY(30px);
+		transition: transform 0.4s ease, box-shadow 0.4s ease;
 	}
 
 	.services.visible .service-card {
 		animation: fadeUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+	}
+
+	.service-card:hover {
+		transform: translateY(-8px);
+		box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 	}
 
 	@keyframes fadeUp {
@@ -500,32 +565,45 @@
 		}
 	}
 
-	.card-glow {
-		position: absolute;
-		top: -50%;
-		left: -50%;
-		width: 200%;
-		height: 200%;
-		background: radial-gradient(circle at center, rgba(212, 168, 83, 0.1) 0%, transparent 50%);
-		opacity: 0;
-		transition: opacity 0.5s ease;
-		pointer-events: none;
+	.service-image {
+		position: relative;
+		height: 200px;
+		overflow: hidden;
 	}
 
-	.service-card:hover .card-glow {
-		opacity: 1;
+	.service-image img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		transition: transform 0.6s ease;
+	}
+
+	.service-card:hover .service-image img {
+		transform: scale(1.1);
+	}
+
+	.service-image-overlay {
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(180deg, transparent 0%, rgba(10, 10, 10, 0.8) 100%);
+	}
+
+	.service-content {
+		padding: 1.5rem 2rem 2rem;
 	}
 
 	.service-icon {
-		font-size: 2.5rem;
+		font-size: 2rem;
 		display: block;
-		margin-bottom: 1.5rem;
+		margin-bottom: 1rem;
 	}
 
 	.service-card h3 {
 		font-size: 1.3rem;
 		color: #e8e4de;
-		margin-bottom: 1rem;
+		margin-bottom: 0.75rem;
+		font-family: 'Inter', sans-serif;
+		font-weight: 600;
 	}
 
 	.service-card p {
@@ -534,10 +612,55 @@
 		line-height: 1.7;
 	}
 
+	/* Image Break */
+	.image-break {
+		position: relative;
+		height: 50vh;
+		min-height: 400px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+		overflow: hidden;
+	}
+
+	.parallax-bg {
+		position: absolute;
+		inset: -20%;
+		background-size: cover;
+		background-position: center;
+		background-attachment: fixed;
+	}
+
+	.image-break-overlay {
+		position: absolute;
+		inset: 0;
+		background: rgba(10, 10, 10, 0.7);
+	}
+
+	.image-break-content {
+		position: relative;
+		z-index: 1;
+	}
+
+	.accent-text {
+		display: block;
+		color: #d4a853;
+		font-size: 1rem;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		margin-bottom: 1rem;
+	}
+
+	.image-break-content h2 {
+		font-size: clamp(2rem, 5vw, 4rem);
+		color: #e8e4de;
+	}
+
 	/* Features Section */
 	.features {
 		padding: 8rem 0;
-		background: linear-gradient(180deg, #0a0a0a 0%, #0f0f0f 100%);
+		background: #0a0a0a;
 	}
 
 	.features-layout {
@@ -547,10 +670,36 @@
 		align-items: center;
 	}
 
+	.features-image {
+		position: relative;
+		border-radius: 16px;
+		overflow: hidden;
+	}
+
+	.features-image img {
+		width: 100%;
+		height: 500px;
+		object-fit: cover;
+		display: block;
+	}
+
+	.features-image-glow {
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(135deg, rgba(212, 168, 83, 0.1) 0%, transparent 50%);
+		pointer-events: none;
+	}
+
+	.features-content h2 {
+		font-size: 2.5rem;
+		color: #e8e4de;
+		margin: 0.5rem 0 2rem;
+	}
+
 	.features-list {
 		display: flex;
 		flex-direction: column;
-		gap: 2rem;
+		gap: 1.5rem;
 	}
 
 	.feature-item {
@@ -596,7 +745,7 @@
 	}
 
 	.feature-text h3 {
-		font-size: 1.25rem;
+		font-size: 1.15rem;
 		color: #e8e4de;
 		margin-bottom: 0.5rem;
 		font-family: 'Inter', sans-serif;
@@ -611,26 +760,42 @@
 	/* Gallery Section */
 	.gallery {
 		padding: 8rem 0;
-		background: #0a0a0a;
+		background: #0f0f0f;
 	}
 
-	.gallery-grid {
+	.gallery-masonry {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-		gap: 2rem;
+		grid-template-columns: repeat(4, 1fr);
+		grid-auto-rows: 200px;
+		gap: 1rem;
 	}
 
 	.gallery-item {
 		position: relative;
-		aspect-ratio: 4/3;
 		border-radius: 12px;
 		overflow: hidden;
+		cursor: pointer;
+		border: none;
+		padding: 0;
 		opacity: 0;
 		transform: scale(0.95);
 	}
 
 	.gallery.visible .gallery-item {
-		animation: scaleIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+		animation: scaleIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+	}
+
+	/* Make some items span 2 rows */
+	.gallery-item:nth-child(1),
+	.gallery-item:nth-child(4),
+	.gallery-item:nth-child(6) {
+		grid-row: span 2;
+	}
+
+	/* Make some items span 2 columns */
+	.gallery-item:nth-child(3),
+	.gallery-item:nth-child(7) {
+		grid-column: span 2;
 	}
 
 	@keyframes scaleIn {
@@ -654,15 +819,115 @@
 	.gallery-overlay {
 		position: absolute;
 		inset: 0;
-		background: linear-gradient(180deg, transparent 50%, rgba(10, 10, 10, 0.8) 100%);
-		pointer-events: none;
+		background: rgba(10, 10, 10, 0.5);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		opacity: 0;
+		transition: opacity 0.3s ease;
+	}
+
+	.gallery-item:hover .gallery-overlay {
+		opacity: 1;
+	}
+
+	.gallery-zoom {
+		width: 50px;
+		height: 50px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: rgba(212, 168, 83, 0.9);
+		color: #0a0a0a;
+		font-size: 1.5rem;
+		font-weight: 300;
+		border-radius: 50%;
+		transform: scale(0.8);
+		transition: transform 0.3s ease;
+	}
+
+	.gallery-item:hover .gallery-zoom {
+		transform: scale(1);
+	}
+
+	/* Lightbox */
+	.lightbox {
+		position: fixed;
+		inset: 0;
+		background: rgba(0, 0, 0, 0.95);
+		z-index: 1000;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 2rem;
+	}
+
+	.lightbox-content {
+		max-width: 90vw;
+		max-height: 85vh;
+	}
+
+	.lightbox-content img {
+		max-width: 100%;
+		max-height: 85vh;
+		object-fit: contain;
+		border-radius: 8px;
+	}
+
+	.lightbox-close {
+		position: absolute;
+		top: 2rem;
+		right: 2rem;
+		background: none;
+		border: none;
+		color: #fff;
+		font-size: 2.5rem;
+		cursor: pointer;
+		opacity: 0.7;
+		transition: opacity 0.3s;
+	}
+
+	.lightbox-close:hover {
+		opacity: 1;
+	}
+
+	.lightbox-prev,
+	.lightbox-next {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		background: rgba(255, 255, 255, 0.1);
+		border: none;
+		color: #fff;
+		font-size: 1.5rem;
+		padding: 1rem 1.5rem;
+		cursor: pointer;
+		border-radius: 4px;
+		transition: background 0.3s;
+	}
+
+	.lightbox-prev { left: 2rem; }
+	.lightbox-next { right: 2rem; }
+
+	.lightbox-prev:hover,
+	.lightbox-next:hover {
+		background: rgba(212, 168, 83, 0.3);
+	}
+
+	.lightbox-counter {
+		position: absolute;
+		bottom: 2rem;
+		left: 50%;
+		transform: translateX(-50%);
+		color: #888;
+		font-size: 0.9rem;
 	}
 
 	/* Testimonials Section */
 	.testimonials {
 		position: relative;
 		padding: 8rem 0;
-		background: #0f0f0f;
+		background: #0a0a0a;
 		overflow: hidden;
 	}
 
@@ -731,7 +996,7 @@
 	.contact {
 		position: relative;
 		padding: 8rem 0;
-		background: #0a0a0a;
+		background: #0f0f0f;
 		overflow: hidden;
 	}
 
@@ -881,10 +1146,41 @@
 	}
 
 	/* Responsive */
+	@media (max-width: 1024px) {
+		.gallery-masonry {
+			grid-template-columns: repeat(2, 1fr);
+			grid-auto-rows: 180px;
+		}
+
+		.gallery-item:nth-child(1),
+		.gallery-item:nth-child(4),
+		.gallery-item:nth-child(6) {
+			grid-row: span 1;
+		}
+
+		.gallery-item:nth-child(3),
+		.gallery-item:nth-child(7) {
+			grid-column: span 1;
+		}
+
+		.gallery-item:nth-child(1),
+		.gallery-item:nth-child(5) {
+			grid-column: span 2;
+		}
+	}
+
 	@media (max-width: 968px) {
 		.features-layout {
 			grid-template-columns: 1fr;
 			gap: 3rem;
+		}
+
+		.features-image {
+			order: -1;
+		}
+
+		.features-image img {
+			height: 350px;
 		}
 
 		.contact-layout {
@@ -906,8 +1202,14 @@
 			grid-template-columns: 1fr;
 		}
 
-		.gallery-grid {
+		.gallery-masonry {
 			grid-template-columns: 1fr;
+			grid-auto-rows: 250px;
+		}
+
+		.gallery-item:nth-child(n) {
+			grid-column: span 1 !important;
+			grid-row: span 1 !important;
 		}
 
 		.testimonials-grid {
@@ -916,6 +1218,15 @@
 
 		.contact-info h2 {
 			font-size: 2rem;
+		}
+
+		.image-break {
+			height: 40vh;
+			min-height: 300px;
+		}
+
+		.parallax-bg {
+			background-attachment: scroll;
 		}
 	}
 </style>

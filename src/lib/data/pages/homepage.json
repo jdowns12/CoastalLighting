@@ -5,32 +5,36 @@
     "backgroundImage": "/images/hero-bokeh.jpg",
     "cta": [
       { "text": "Get a Quote", "href": "#contact", "primary": true },
-      { "text": "Our Services", "href": "#services", "primary": false }
+      { "text": "View Gallery", "href": "#gallery", "primary": false }
     ]
   },
   "services": {
-    "sectionTitle": "What We Offer",
-    "sectionSubtitle": "Event Lighting Services",
+    "sectionTitle": "Our Services",
+    "sectionSubtitle": "Transform Any Venue",
     "items": [
       {
         "icon": "✨",
         "title": "String Lights",
-        "description": "Romantic bistro and Edison bulb string lights perfect for outdoor receptions, patios, and tent canopies."
+        "description": "Romantic bistro and Edison bulb string lights perfect for outdoor receptions, patios, and tent canopies.",
+        "image": "/images/service-string-lights.jpg"
       },
       {
         "icon": "💡",
         "title": "Uplighting",
-        "description": "Wireless LED uplighting to transform any venue with your color palette. Set the perfect mood."
+        "description": "Wireless LED uplighting to transform any venue with your color palette. Set the perfect mood.",
+        "image": "/images/service-uplighting.jpg"
       },
       {
         "icon": "🏮",
         "title": "Lanterns & Candles",
-        "description": "Elegant lanterns and flameless candles for table centerpieces and pathway illumination."
+        "description": "Elegant lanterns and flameless candles for table centerpieces and pathway illumination.",
+        "image": "/images/service-lanterns.jpg"
       },
       {
         "icon": "🌟",
         "title": "Custom Installations",
-        "description": "Unique lighting designs tailored to your vision. From intimate dinners to grand celebrations."
+        "description": "Unique lighting designs tailored to your vision. From intimate dinners to grand celebrations.",
+        "image": "/images/service-custom.jpg"
       }
     ]
   },
@@ -54,10 +58,16 @@
   },
   "gallery": {
     "sectionTitle": "Our Work",
-    "sectionSubtitle": "Recent Events",
+    "sectionSubtitle": "Recent Events & Inspiration",
     "images": [
-      "/images/string-lights.jpg",
-      "/images/outdoor-event.jpg"
+      "/images/gallery-1.jpg",
+      "/images/gallery-2.jpg",
+      "/images/gallery-3.jpg",
+      "/images/gallery-4.jpg",
+      "/images/gallery-5.jpg",
+      "/images/gallery-6.jpg",
+      "/images/gallery-7.jpg",
+      "/images/gallery-8.jpg"
     ]
   },
   "testimonials": {
