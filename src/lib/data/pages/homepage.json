@@ -22,23 +22,23 @@
     ]
   },
   "services": {
-    "sectionTitle": "Our Services",
-    "sectionSubtitle": "Transform Any Venue",
+    "sectionTitle": "Our Services (JE)",
+    "sectionSubtitle": "Transform Any Venue to GumDrop",
     "items": [
       {
-        "title": "String Lights",
-        "description": "Romantic bistro and Edison bulb string lights perfect for outdoor receptions, patios, and tent canopies.",
-        "image": "/images/service-string-lights.jpg"
+        "title": "New PIC",
+        "description": "hahah",
+        "image": "/images/gallery-4.jpg"
       },
       {
-        "title": "Uplighting",
-        "description": "Wireless LED uplighting to transform any venue with your color palette. Set the perfect mood.",
-        "image": "/images/service-uplighting.jpg"
+        "title": "Uplighting (JE)",
+        "description": "shhh",
+        "image": "/images/gallery-1.jpg"
       },
       {
-        "title": "Lanterns & Candles",
-        "description": "Elegant lanterns and flameless candles for table centerpieces and pathway illumination.",
-        "image": "/images/service-lanterns.jpg"
+        "title": "Lanterns & Candles (JE)",
+        "description": "too much editing",
+        "image": "/images/gallery-3.jpg"
       },
       {
         "title": "Custom Installations",
