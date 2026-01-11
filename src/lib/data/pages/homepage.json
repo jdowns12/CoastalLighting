@@ -1,7 +1,7 @@
 {
   "hero": {
     "title": "Light Up Your\nMoments",
-    "subtitle": "Professional event lighting for weddings, celebrations, and unforgettable nights on the Georgia coast",
+    "subtitle": "Professional event lighting for weddings, celebrations, and unforgettable nights",
     "backgroundImage": "/images/hero-bokeh.jpg",
     "cta": [
       { "text": "Get a Quote", "href": "#contact", "primary": true },
@@ -40,11 +40,11 @@
   },
   "features": {
     "sectionTitle": "Why Coastal Lighting?",
-    "sectionSubtitle": "The Golden Isles' Premier Event Lighting",
+    "sectionSubtitle": "Premier Event Lighting",
     "items": [
       {
         "title": "Local Expertise",
-        "description": "Based on St. Simons Island, we know the coastal Georgia venues inside and out."
+        "description": "We know the local venues inside and out, ensuring perfect lighting every time."
       },
       {
         "title": "Full Service",
@@ -75,14 +75,14 @@
     "sectionSubtitle": "What People Are Saying",
     "items": [
       {
-        "quote": "Coastal Lighting made our beach wedding absolutely magical. The string lights over the dance floor created the perfect atmosphere.",
-        "name": "Sarah & James",
-        "role": "Wedding, St. Simons Island"
+        "quote": "They made our wedding absolutely magical. The string lights over the dance floor created the perfect atmosphere.",
+        "name": "Client 1",
+        "role": "Wedding"
       },
       {
         "quote": "Professional, on time, and the lighting looked incredible. Our guests couldn't stop talking about the ambiance.",
-        "name": "Michelle Davis",
-        "role": "Corporate Event Planner"
+        "name": "Client 2",
+        "role": "Corporate Event"
       }
     ]
   },
