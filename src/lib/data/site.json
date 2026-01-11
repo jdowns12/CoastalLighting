@@ -1,14 +1,15 @@
 {
-  "name": "Coastal Lighting and Events",
-  "tagline": "Affordable Party Rentals",
+  "name": "Coastal Lighting",
+  "tagline": "Transform Your Event with Light",
   "phone": "(912) 434-9938",
   "email": "info@coastallighting.events",
+  "location": "St. Simons Island, Georgia",
   "social": {
     "facebook": "https://www.facebook.com/people/EZ-Rental-SSI/61557004460417/",
-    "twitter": "https://twitter.com/ID"
+    "instagram": "#"
   },
   "footer": {
-    "copyright": "2023 All rights reserved.",
-    "domain": "CoastalLighting.events"
+    "copyright": "2024 Coastal Lighting. All rights reserved.",
+    "domain": "coastallighting.events"
   }
 }

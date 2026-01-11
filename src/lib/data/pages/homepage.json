@@ -1,71 +1,84 @@
 {
   "hero": {
-    "title": "Rent Party Essentials Now",
-    "subtitle": "Make your event a success with our wide selection of tents, tables, and chairs for rent.",
+    "title": "Light Up Your\nMoments",
+    "subtitle": "Professional event lighting for weddings, celebrations, and unforgettable nights on the Georgia coast",
     "backgroundImage": "/images/hero-bokeh.jpg",
     "cta": [
-      { "text": "Contact us", "href": "#contact", "primary": true },
-      { "text": "Features", "href": "#features", "primary": false }
+      { "text": "Get a Quote", "href": "#contact", "primary": true },
+      { "text": "Our Services", "href": "#services", "primary": false }
     ]
   },
-  "features": {
-    "sectionTitle": "Why Choose Us?",
-    "sectionSubtitle": "Convenient and affordable party rentals",
+  "services": {
+    "sectionTitle": "What We Offer",
+    "sectionSubtitle": "Event Lighting Services",
     "items": [
       {
-        "number": 1,
-        "title": "Wide Selection",
-        "description": "Choose from a variety of tents, tables, and chairs to fit your event needs."
+        "icon": "✨",
+        "title": "String Lights",
+        "description": "Romantic bistro and Edison bulb string lights perfect for outdoor receptions, patios, and tent canopies."
       },
       {
-        "number": 2,
-        "title": "Convenient Delivery",
-        "description": "We offer delivery and setup services to make your event planning hassle-free."
+        "icon": "💡",
+        "title": "Uplighting",
+        "description": "Wireless LED uplighting to transform any venue with your color palette. Set the perfect mood."
       },
       {
-        "number": 3,
-        "title": "Affordable Prices",
-        "description": "Renting party essentials shouldn't break the bank. Our prices are budget-friendly."
+        "icon": "🏮",
+        "title": "Lanterns & Candles",
+        "description": "Elegant lanterns and flameless candles for table centerpieces and pathway illumination."
       },
       {
-        "number": 4,
-        "title": "Excellent Customer Service",
-        "description": "Our team is dedicated to providing exceptional service to ensure your event is a success."
+        "icon": "🌟",
+        "title": "Custom Installations",
+        "description": "Unique lighting designs tailored to your vision. From intimate dinners to grand celebrations."
       }
     ]
   },
-  "about": [
-    {
-      "title": "Hassle Free Setup and Delivery",
-      "description": "We will deliver and set your items up so you can relax and focus on other matters.",
-      "image": "/images/string-lights.jpg",
-      "imagePosition": "right"
-    },
-    {
-      "title": "Flexible Rental Periods",
-      "description": "Whether you need our rentals for one day or a week, we offer flexible rental periods to fit your event schedule.",
-      "image": "/images/outdoor-event.jpg",
-      "imagePosition": "left"
-    }
-  ],
-  "testimonials": {
-    "sectionTitle": "Testimonials",
-    "sectionSubtitle": "What our customers say",
+  "features": {
+    "sectionTitle": "Why Coastal Lighting?",
+    "sectionSubtitle": "The Golden Isles' Premier Event Lighting",
     "items": [
       {
-        "quote": "EZ Rental SSI has been my go-to for all my event rental needs. Their service is top-notch and their prices are unbeatable.",
-        "name": "Jane Smith",
-        "role": "Event Planner"
+        "title": "Local Expertise",
+        "description": "Based on St. Simons Island, we know the coastal Georgia venues inside and out."
       },
       {
-        "quote": "Thanks to EZ Rental SSI, my daughter's birthday party was a success. The tent and chairs were in great condition and the delivery was on time.",
-        "name": "Mike Johnson",
-        "role": "Party Host"
+        "title": "Full Service",
+        "description": "We handle delivery, professional installation, and teardown. You just enjoy the moment."
+      },
+      {
+        "title": "Flexible Packages",
+        "description": "From intimate gatherings to grand celebrations, we have lighting solutions for every budget."
+      }
+    ]
+  },
+  "gallery": {
+    "sectionTitle": "Our Work",
+    "sectionSubtitle": "Recent Events",
+    "images": [
+      "/images/string-lights.jpg",
+      "/images/outdoor-event.jpg"
+    ]
+  },
+  "testimonials": {
+    "sectionTitle": "Client Love",
+    "sectionSubtitle": "What People Are Saying",
+    "items": [
+      {
+        "quote": "Coastal Lighting made our beach wedding absolutely magical. The string lights over the dance floor created the perfect atmosphere.",
+        "name": "Sarah & James",
+        "role": "Wedding, St. Simons Island"
+      },
+      {
+        "quote": "Professional, on time, and the lighting looked incredible. Our guests couldn't stop talking about the ambiance.",
+        "name": "Michelle Davis",
+        "role": "Corporate Event Planner"
       }
     ]
   },
   "contact": {
-    "title": "Contact us",
-    "fields": ["fullName", "phone", "email", "message"]
+    "title": "Ready to Light Up Your Event?",
+    "subtitle": "Tell us about your vision and we'll create something beautiful together.",
+    "fields": ["fullName", "phone", "email", "eventDate", "message"]
   }
 }

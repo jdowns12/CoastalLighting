@@ -20,12 +20,13 @@ collections:
           - { name: tagline, label: Tagline, widget: string }
           - { name: phone, label: Phone Number, widget: string }
           - { name: email, label: Email, widget: string }
+          - { name: location, label: Location, widget: string }
           - name: social
             label: Social Links
             widget: object
             fields:
               - { name: facebook, label: Facebook URL, widget: string }
-              - { name: twitter, label: Twitter/X URL, widget: string }
+              - { name: instagram, label: Instagram URL, widget: string }
           - name: footer
             label: Footer
             widget: object
@@ -55,8 +56,22 @@ collections:
                   - { name: href, label: Link, widget: string }
                   - { name: primary, label: Primary Button, widget: boolean }
 
+          - name: services
+            label: Services Section
+            widget: object
+            fields:
+              - { name: sectionTitle, label: Section Title, widget: string }
+              - { name: sectionSubtitle, label: Section Subtitle, widget: string }
+              - name: items
+                label: Service Items
+                widget: list
+                fields:
+                  - { name: icon, label: Icon (emoji), widget: string }
+                  - { name: title, label: Title, widget: string }
+                  - { name: description, label: Description, widget: text }
+
           - name: features
-            label: Features Section
+            label: Why Us Section
             widget: object
             fields:
               - { name: sectionTitle, label: Section Title, widget: string }
@@ -65,23 +80,19 @@ collections:
                 label: Feature Items
                 widget: list
                 fields:
-                  - { name: number, label: Number, widget: number }
                   - { name: title, label: Title, widget: string }
                   - { name: description, label: Description, widget: text }
 
-          - name: about
-            label: About Sections
-            widget: list
+          - name: gallery
+            label: Gallery Section
+            widget: object
             fields:
-              - { name: title, label: Title, widget: string }
-              - { name: description, label: Description, widget: text }
-              - { name: image, label: Image, widget: image }
-              - name: imagePosition
-                label: Image Position
-                widget: select
-                options:
-                  - { label: Left, value: left }
-                  - { label: Right, value: right }
+              - { name: sectionTitle, label: Section Title, widget: string }
+              - { name: sectionSubtitle, label: Section Subtitle, widget: string }
+              - name: images
+                label: Gallery Images
+                widget: list
+                field: { name: image, label: Image, widget: image }
 
           - name: testimonials
             label: Testimonials Section
@@ -95,13 +106,14 @@ collections:
                 fields:
                   - { name: quote, label: Quote, widget: text }
                   - { name: name, label: Name, widget: string }
-                  - { name: role, label: Role/Title, widget: string }
+                  - { name: role, label: Role/Event, widget: string }
 
           - name: contact
             label: Contact Section
             widget: object
             fields:
               - { name: title, label: Title, widget: string }
+              - { name: subtitle, label: Subtitle, widget: text }
               - name: fields
                 label: Form Fields
                 widget: list
