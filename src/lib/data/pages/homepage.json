@@ -13,25 +13,21 @@
     "sectionSubtitle": "Transform Any Venue",
     "items": [
       {
-        "icon": "✨",
         "title": "String Lights",
         "description": "Romantic bistro and Edison bulb string lights perfect for outdoor receptions, patios, and tent canopies.",
         "image": "/images/service-string-lights.jpg"
       },
       {
-        "icon": "💡",
         "title": "Uplighting",
         "description": "Wireless LED uplighting to transform any venue with your color palette. Set the perfect mood.",
         "image": "/images/service-uplighting.jpg"
       },
       {
-        "icon": "🏮",
         "title": "Lanterns & Candles",
         "description": "Elegant lanterns and flameless candles for table centerpieces and pathway illumination.",
         "image": "/images/service-lanterns.jpg"
       },
       {
-        "icon": "🌟",
         "title": "Custom Installations",
         "description": "Unique lighting designs tailored to your vision. From intimate dinners to grand celebrations.",
         "image": "/images/service-custom.jpg"

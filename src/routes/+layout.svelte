@@ -26,7 +26,9 @@
 	<header class:scrolled>
 		<nav>
 			<a href="/" class="logo">
-				<span class="logo-icon">⚡</span>
+				<svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+					<path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+				</svg>
 				<span class="logo-text">{site.name}</span>
 			</a>
 			<button class="mobile-toggle" on:click={() => mobileMenuOpen = !mobileMenuOpen} aria-label="Menu">
@@ -49,7 +51,9 @@
 		<div class="footer-glow"></div>
 		<div class="footer-content">
 			<div class="footer-brand">
-				<span class="logo-icon large">⚡</span>
+				<svg class="logo-icon large" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+					<path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+				</svg>
 				<h2>{site.name}</h2>
 				<p class="location">{site.location}</p>
 			</div>
@@ -133,14 +137,16 @@
 	}
 
 	.logo-icon {
-		font-size: 1.5rem;
+		width: 28px;
+		height: 28px;
 		color: #22c55e;
-		text-shadow: 0 0 20px rgba(34, 197, 94, 0.5);
+		filter: drop-shadow(0 0 10px rgba(34, 197, 94, 0.5));
 		animation: pulse 3s ease-in-out infinite;
 	}
 
 	.logo-icon.large {
-		font-size: 3rem;
+		width: 48px;
+		height: 48px;
 	}
 
 	@keyframes pulse {
@@ -287,6 +293,9 @@
 
 	.footer-brand {
 		margin-bottom: 2rem;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 	}
 
 	.footer-brand h2 {

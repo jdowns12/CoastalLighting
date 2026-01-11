@@ -15,6 +15,14 @@
 	let particles = [];
 	let activeGalleryIndex = null;
 
+	// Service icons as SVG paths
+	const serviceIcons = {
+		'String Lights': '<path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41M12 6a6 6 0 100 12 6 6 0 000-12z"/><circle cx="12" cy="12" r="3"/>',
+		'Uplighting': '<path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/><path d="M9 9l12-2"/>',
+		'Lanterns & Candles': '<path d="M12 2c-1.5 0-3 1.5-3 3v1H6v14a2 2 0 002 2h8a2 2 0 002-2V6h-3V5c0-1.5-1.5-3-3-3z"/><path d="M12 6v4"/><circle cx="12" cy="14" r="2"/>',
+		'Custom Installations': '<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>',
+	};
+
 	onMount(() => {
 		visible.hero = true;
 
@@ -82,6 +90,10 @@
 	function prevImage() {
 		activeGalleryIndex = (activeGalleryIndex - 1 + homepage.gallery.images.length) % homepage.gallery.images.length;
 	}
+
+	function getServiceIcon(title) {
+		return serviceIcons[title] || serviceIcons['Custom Installations'];
+	}
 </script>
 
 <svelte:window on:keydown={(e) => {
@@ -108,7 +120,20 @@
 	</div>
 	
 	<div class="hero-content">
-		<div class="hero-badge">⚡ {site.location}</div>
+		<div class="hero-badge">
+			<svg class="badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+				<circle cx="12" cy="12" r="5"/>
+				<line x1="12" y1="1" x2="12" y2="3"/>
+				<line x1="12" y1="21" x2="12" y2="23"/>
+				<line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+				<line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+				<line x1="1" y1="12" x2="3" y2="12"/>
+				<line x1="21" y1="12" x2="23" y2="12"/>
+				<line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+				<line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+			</svg>
+			{site.location}
+		</div>
 		<h1>{@html homepage.hero.title.replace('\n', '<br/>')}</h1>
 		<p>{homepage.hero.subtitle}</p>
 		<div class="hero-buttons">
@@ -140,7 +165,9 @@
 						<div class="service-image-overlay"></div>
 					</div>
 					<div class="service-content">
-						<span class="service-icon">{service.icon}</span>
+						<svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+							{@html getServiceIcon(service.title)}
+						</svg>
 						<h3>{service.title}</h3>
 						<p>{service.description}</p>
 					</div>
@@ -201,7 +228,11 @@
 				<button class="gallery-item" style="animation-delay: {i * 0.1}s" on:click={() => openLightbox(i)}>
 					<img src={image} alt="Event lighting {i + 1}" loading="lazy" />
 					<div class="gallery-overlay">
-						<span class="gallery-zoom">+</span>
+						<svg class="gallery-zoom" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<circle cx="11" cy="11" r="8"/>
+							<path d="M21 21l-4.35-4.35"/>
+							<path d="M11 8v6M8 11h6"/>
+						</svg>
 					</div>
 				</button>
 			{/each}
@@ -212,12 +243,24 @@
 <!-- Lightbox -->
 {#if activeGalleryIndex !== null}
 	<div class="lightbox" on:click={closeLightbox}>
-		<button class="lightbox-close" on:click={closeLightbox}>&times;</button>
-		<button class="lightbox-prev" on:click|stopPropagation={prevImage}>&larr;</button>
+		<button class="lightbox-close" on:click={closeLightbox}>
+			<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+				<path d="M18 6L6 18M6 6l12 12"/>
+			</svg>
+		</button>
+		<button class="lightbox-prev" on:click|stopPropagation={prevImage}>
+			<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+				<path d="M15 18l-6-6 6-6"/>
+			</svg>
+		</button>
 		<div class="lightbox-content" on:click|stopPropagation>
 			<img src={homepage.gallery.images[activeGalleryIndex]} alt="Gallery image" />
 		</div>
-		<button class="lightbox-next" on:click|stopPropagation={nextImage}>&rarr;</button>
+		<button class="lightbox-next" on:click|stopPropagation={nextImage}>
+			<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+				<path d="M9 18l6-6-6-6"/>
+			</svg>
+		</button>
 		<div class="lightbox-counter">{activeGalleryIndex + 1} / {homepage.gallery.images.length}</div>
 	</div>
 {/if}
@@ -233,7 +276,9 @@
 		<div class="testimonials-grid">
 			{#each homepage.testimonials.items as testimonial, i}
 				<div class="testimonial-card" style="animation-delay: {i * 0.2}s">
-					<div class="quote-mark">"</div>
+					<svg class="quote-icon" viewBox="0 0 24 24" fill="currentColor">
+						<path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+					</svg>
 					<p class="quote">{testimonial.quote}</p>
 					<div class="author">
 						<div class="author-info">
@@ -257,11 +302,16 @@
 				<p>{homepage.contact.subtitle}</p>
 				<div class="contact-details">
 					<a href="tel:{site.phone}" class="contact-phone">
-						<span class="icon">📞</span>
+						<svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+						</svg>
 						{site.phone}
 					</a>
 					<a href="mailto:{site.email}" class="contact-email">
-						<span class="icon">✉️</span>
+						<svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+							<polyline points="22,6 12,13 2,6"/>
+						</svg>
 						{site.email}
 					</a>
 				</div>
@@ -290,7 +340,10 @@
 					{#if formStatus === 'sending'}
 						<span class="spinner"></span> Sending...
 					{:else if formStatus === 'sent'}
-						✓ Message Sent!
+						<svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<polyline points="20 6 9 17 4 12"/>
+						</svg>
+						Message Sent!
 					{:else}
 						Send Message
 					{/if}
@@ -411,7 +464,9 @@
 	}
 
 	.hero-badge {
-		display: inline-block;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
 		padding: 0.5rem 1.25rem;
 		background: rgba(34, 197, 94, 0.15);
 		border: 1px solid rgba(34, 197, 94, 0.3);
@@ -420,6 +475,11 @@
 		font-size: 0.85rem;
 		letter-spacing: 1px;
 		margin-bottom: 2rem;
+	}
+
+	.badge-icon {
+		width: 18px;
+		height: 18px;
 	}
 
 	.hero h1 {
@@ -594,8 +654,9 @@
 	}
 
 	.service-icon {
-		font-size: 2rem;
-		display: block;
+		width: 40px;
+		height: 40px;
+		color: #22c55e;
 		margin-bottom: 1rem;
 	}
 
@@ -786,14 +847,12 @@
 		animation: scaleIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 	}
 
-	/* Make some items span 2 rows */
 	.gallery-item:nth-child(1),
 	.gallery-item:nth-child(4),
 	.gallery-item:nth-child(6) {
 		grid-row: span 2;
 	}
 
-	/* Make some items span 2 columns */
 	.gallery-item:nth-child(3),
 	.gallery-item:nth-child(7) {
 		grid-column: span 2;
@@ -835,13 +894,9 @@
 	.gallery-zoom {
 		width: 50px;
 		height: 50px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
+		padding: 12px;
 		background: rgba(34, 197, 94, 0.9);
 		color: #fff;
-		font-size: 1.5rem;
-		font-weight: 300;
 		border-radius: 50%;
 		transform: scale(0.8);
 		transition: transform 0.3s ease;
@@ -882,10 +937,15 @@
 		background: none;
 		border: none;
 		color: #fff;
-		font-size: 2.5rem;
 		cursor: pointer;
 		opacity: 0.7;
 		transition: opacity 0.3s;
+		padding: 0.5rem;
+	}
+
+	.lightbox-close svg {
+		width: 32px;
+		height: 32px;
 	}
 
 	.lightbox-close:hover {
@@ -900,11 +960,16 @@
 		background: rgba(34, 197, 94, 0.2);
 		border: none;
 		color: #fff;
-		font-size: 1.5rem;
-		padding: 1rem 1.5rem;
+		padding: 1rem;
 		cursor: pointer;
 		border-radius: 4px;
 		transition: background 0.3s;
+	}
+
+	.lightbox-prev svg,
+	.lightbox-next svg {
+		width: 24px;
+		height: 24px;
 	}
 
 	.lightbox-prev { left: 2rem; }
@@ -961,15 +1026,12 @@
 		animation: fadeUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 	}
 
-	.quote-mark {
-		font-family: 'Playfair Display', serif;
-		font-size: 5rem;
+	.quote-icon {
+		width: 40px;
+		height: 40px;
 		color: #22c55e;
 		opacity: 0.3;
-		line-height: 1;
-		position: absolute;
-		top: 1rem;
-		left: 1.5rem;
+		margin-bottom: 1rem;
 	}
 
 	.quote {
@@ -1047,6 +1109,12 @@
 		text-decoration: none;
 		font-size: 1.1rem;
 		transition: color 0.3s;
+	}
+
+	.contact-icon {
+		width: 24px;
+		height: 24px;
+		flex-shrink: 0;
 	}
 
 	.contact-phone {
@@ -1131,6 +1199,11 @@
 	.submit-btn:disabled {
 		opacity: 0.7;
 		cursor: not-allowed;
+	}
+
+	.check-icon {
+		width: 20px;
+		height: 20px;
 	}
 
 	.spinner {
