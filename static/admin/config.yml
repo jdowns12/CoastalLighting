@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: jadondowns/CoastalLighting
+  repo: jdowns12/CoastalLighting
   branch: main
   base_url: https://cms-auth.gumdrop.space
   auth_endpoint: /api/auth
